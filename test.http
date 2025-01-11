@@ -1,0 +1,20 @@
+@rootURL= http://localhost:5000
+
+###
+POST {{rootURL}}/api/auth/signup
+Content-Type: application/json
+
+{
+    "name": "arvind",
+    "email": "arvind@gmail.com",
+    "password": "123"
+}
+
+###
+POST {{rootURL}}/api/auth/login
+Content-Type: application/json
+
+{
+    "name": "arvind",
+    "password": "123"
+}
