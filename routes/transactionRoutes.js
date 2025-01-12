@@ -10,9 +10,6 @@ const {
 
 const router = express.Router();
 
-// // Apply auth middleware to all routes
-// router.use(middleware);
-
 // Fetch all transactions
 router.get("/transactions", middleware, getAllTransactions);
 
