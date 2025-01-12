@@ -4,9 +4,9 @@ const Transaction = require("../models/transactionModel");
 exports.getAllTransactions = async (req, res) => {
   try {
     const transactions = await Transaction.find();
-    res.status(200).json(transactions);
+    return res.status(200).json(transactions);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: error.message });
   }
 };
 
@@ -52,15 +52,35 @@ exports.webhookUpdate = async (req, res) => {
 // Manual status update
 exports.manualStatusUpdate = async (req, res) => {
   const { custom_order_id, status } = req.body;
+
+  // Validate request body
+  if (!custom_order_id || !status) {
+    return res.status(400).json({ message: "custom_order_id and status are required" });
+  }
+
+  // Validate status value
+  const validStatuses = ["Success", "Pending", "Failed"];
+  if (!validStatuses.includes(status)) {
+    return res.status(400).json({ message: `Invalid status. Allowed values: ${validStatuses.join(", ")}` });
+  }
+
   try {
+    // Find and update the transaction
     const transaction = await Transaction.findOneAndUpdate(
       { custom_order_id },
       { status },
       { new: true }
     );
-    if (!transaction) return res.status(404).json({ message: "Transaction not found" });
-    res.status(200).json(transaction);
+
+    if (!transaction) {
+      return res.status(404).json({ message: "Transaction not found" });
+    }
+
+    // Return the updated transaction
+    res.status(200).json({ message: "Transaction status updated successfully", transaction });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    // Handle any errors
+    res.status(500).json({ message: "An error occurred while updating the transaction", error: error.message });
   }
 };
+

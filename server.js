@@ -1,11 +1,9 @@
-// server.js
-
 const express = require("express");
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const transactionRoutes = require("./routes/transactionRoutes");
-const authRoutes = require("./auth/auth"); // Import auth route
+const authRoutes = require("./auth/auth");
 
 const app = express();
 dotenv.config();

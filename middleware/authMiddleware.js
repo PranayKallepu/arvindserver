@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+const dotenv = require('dotenv')
 
 const authMiddleware = (req, res, next) => {
   const token = req.header("Authorization")?.split(" ")[1]; // Extract Bearer token
@@ -6,10 +7,10 @@ const authMiddleware = (req, res, next) => {
 
   try {
     const verified = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = verified;
+    req.user = verified; // Attach user info to request
     next();
   } catch (error) {
-    res.status(400).json({ message: "Invalid Token" });
+    res.status(401).json({ message: "Invalid Token" });
   }
 };
 

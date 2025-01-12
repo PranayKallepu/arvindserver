@@ -1,20 +1,57 @@
 @rootURL= http://localhost:5000
 
 ###
+//SIGNUP
 POST {{rootURL}}/api/auth/signup
 Content-Type: application/json
 
 {
-    "name": "arvind",
-    "email": "arvind@gmail.com",
+    "name": "lucky",
+    "email": "lucky@gmail.com",
     "password": "123"
 }
 
 ###
+//Login
 POST {{rootURL}}/api/auth/login
 Content-Type: application/json
 
 {
-    "name": "arvind",
+    "name": "lucky",
     "password": "123"
+}
+
+###
+GET {{rootURL}}/api/transactions
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibHVja3kiLCJlbWFpbCI6Imx1Y2t5QGdtYWlsLmNvbSIsImlhdCI6MTczNjY2OTY5OSwiZXhwIjoxNzM2NjczMjk5fQ.BJvHxzg3J_JpjdrHQwP8tcDDz_8pEDTwnZykbiYbyyU
+
+###
+GET {{rootURL}}/api/transactions/school/67308b27e9bbcdf5f22d24c1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibHVja3kiLCJlbWFpbCI6Imx1Y2t5QGdtYWlsLmNvbSIsImlhdCI6MTczNjY2NzU4MywiZXhwIjoxNzM2NjcxMTgzfQ.t_5Og_wkPm-58Egh2ENJIT8ipaLv4eWWTgI6hl7C02w
+
+###
+GET {{rootURL}}/api/transactions/status/test1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibHVja3kiLCJlbWFpbCI6Imx1Y2t5QGdtYWlsLmNvbSIsImlhdCI6MTczNjY2NzU4MywiZXhwIjoxNzM2NjcxMTgzfQ.t_5Og_wkPm-58Egh2ENJIT8ipaLv4eWWTgI6hl7C02w
+
+###
+POST {{rootURL}}/api/transactions/webhook
+Content-Type: application/json
+
+{
+  "order_info": {
+    "order_id": "6730d9b926c65c39b0ee0149",
+    "status": "Failure",
+    "transaction_amount": 50500
+  }
+}
+
+
+###
+POST {{rootURL}}/api/transactions/update-status
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoibHVja3kiLCJlbWFpbCI6Imx1Y2t5QGdtYWlsLmNvbSIsImlhdCI6MTczNjY2NzU4MywiZXhwIjoxNzM2NjcxMTgzfQ.t_5Og_wkPm-58Egh2ENJIT8ipaLv4eWWTgI6hl7C02w
+Content-Type: application/json
+
+{
+  "custom_order_id": "6730e74326c65c39b0ee0222",
+  "status": "Success"
 }
