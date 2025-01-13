@@ -1,5 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
+const cors = require('cors')
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const transactionRoutes = require("./routes/transactionRoutes");
@@ -9,6 +10,7 @@ const app = express();
 dotenv.config();
 
 // Middleware
+app.use(cors({origin:"*"}))
 app.use(bodyParser.json());
 
 // Use auth routes

@@ -6,8 +6,8 @@ POST {{rootURL}}/api/auth/signup
 Content-Type: application/json
 
 {
-    "name": "lucky",
-    "email": "lucky@gmail.com",
+    "username": "lincy",
+    "email": "lincy@gmail.com",
     "password": "123"
 }
 
@@ -17,7 +17,7 @@ POST {{rootURL}}/api/auth/login
 Content-Type: application/json
 
 {
-    "name": "lucky",
+    "username": "lincy",
     "password": "123"
 }
 
